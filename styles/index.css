@@ -1,0 +1,29 @@
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    background-image: url(https://themprojects.com/wp-content/uploads/2017/08/ideas-huge-bookshelf-inside-huge-bookshelf.jpg);
+}
+
+.headerBar {
+    border-radius: 0px !important;
+    background-color: rgb(38, 97, 153);
+}
+
+.footer {
+    margin-bottom: 0px !important;
+    margin-top:50px;
+    font-weight: 700;
+    padding-bottom: 60px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.none {
+	display: none;
+}
+
+#example {
+	margin: 0 auto !important;
+}
+
+

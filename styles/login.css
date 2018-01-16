@@ -1,0 +1,23 @@
+html, body{
+    background-color: whitesmoke !important;
+}
+
+.main {
+    margin-top: 10%;
+}
+
+.login-box {
+    background-color: white !important;
+}
+.title {
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center;
+}
+
+.btn-submit {
+    height: 100% !important;
+}
+.modal-btn {
+    margin-bottom: 40px;
+}
