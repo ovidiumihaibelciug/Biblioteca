@@ -3,7 +3,7 @@ $alert = 0;
 session_start();
 $_SESSION['logged'] = 0;
 if (isset($_POST['submit'])) {
-    if ($_POST['password'] == 'admin') {
+    if ($_POST['password'] == 'biblioteca123') {
         header('Location: main.php');
         $_SESSION['logged'] = 1;
     } else {
