@@ -22,6 +22,7 @@ while ($row <= $lastRow) {
     $fieldBook = $worksheet->getCell('A'.$row)->getValue();
     $titleBook = $worksheet->getCell('C'.$row)->getValue();
     $authorBook = $worksheet->getCell('B'.$row)->getValue();
+    
     $query = "INSERT INTO `books` (`id`, `name`, `author`, `field`) VALUES ('$idBook', '$titleBook', '$authorBook', '$fieldBook')";
     mysqli_query($conn, $query);
 

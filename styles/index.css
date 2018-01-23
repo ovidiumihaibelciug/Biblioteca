@@ -249,3 +249,9 @@ html, body {
   }
 }
 
+@media (max-width: 990px) {
+  .schedule {
+    margin-top: 20px;
+  }
+}
+

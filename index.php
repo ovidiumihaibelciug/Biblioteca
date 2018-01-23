@@ -1,6 +1,6 @@
 <?php
 require 'includes/conn.php';
-$schedule = ['Luni' => ' 08:00 - 10:00', 'Marti' => '08:00 - 10:00', 'Miercuri' => '08:00 - 10:00', 'Joi' => '08:00 - 10:00', 'Vineri' => '08:00 - 10:00', 'Sambata' => '08:00 - 9:00', 'Duminica' => '08:00 - 10:00'];
+$schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' => '08:00 - 16:00', 'Joi' => '08:00 - 16:00', 'Vineri' => '08:00 - 16:00', 'Sambata' => 'Închis', 'Duminica' => 'Închis'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,7 +51,7 @@ $schedule = ['Luni' => ' 08:00 - 10:00', 'Marti' => '08:00 - 10:00', 'Miercuri' 
                 </table>
                 </div>
                 <div class="col-md-3">
-                    <div class="panel panel-default">
+                    <div class="panel panel-default schedule">
                         <div class="panel-heading" style="background-color: white; text-align: center; font-family: Verdana; text-transform: uppercase;">
                             <h4 class="title">
                                 Program
@@ -60,10 +60,10 @@ $schedule = ['Luni' => ' 08:00 - 10:00', 'Marti' => '08:00 - 10:00', 'Miercuri' 
                         <div class="panel-body" style="text-align: center; align-items: center;">
                             <div class="row" style="text-align: center">
                                 <?php foreach ($schedule as $day => $day_schedule) {?>
-                                <div class="col-md-5 text-right">
+                                <div class="col-xs-5 text-right">
                                     <?php echo $day . ':'; ?>
                                 </div>
-                                <div class="col-md-7 text-left strong">
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
                                     <?php echo $day_schedule ?>
                                 </div>
                                 <?php } ?>
