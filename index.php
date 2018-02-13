@@ -1,6 +1,6 @@
 <?php
 require 'includes/conn.php';
-$schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' => '08:00 - 16:00', 'Joi' => '08:00 - 16:00', 'Vineri' => '08:00 - 16:00', 'Sambata' => 'Închis', 'Duminica' => 'Închis'];
+// $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' => '08:00 - 16:00', 'Joi' => '08:00 - 16:00', 'Vineri' => '08:00 - 16:00', 'Sambata' => 'Închis', 'Duminica' => 'Închis'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -59,14 +59,56 @@ $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' 
                         </div>
                         <div class="panel-body" style="text-align: center; align-items: center;">
                             <div class="row" style="text-align: center">
-                                <?php foreach ($schedule as $day => $day_schedule) {?>
+                                <!-- <?php foreach ($schedule as $day => $day_schedule) {?>
                                 <div class="col-xs-5 text-right">
                                     <?php echo $day . ':'; ?>
                                 </div>
                                 <div class="col-xs-7 text-left strong" style="text-align: center">
                                     <?php echo $day_schedule ?>
                                 </div>
-                                <?php } ?>
+                                <?php } ?> -->
+                                <div class="col-xs-5 text-right">
+                                    Luni: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    08:00 - 16:00
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Marti: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    08:00 - 16:00
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Miercuri: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    08:00 - 16:00
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Joi: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    08:00 - 16:00
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Vineri: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    08:00 - 16:00
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Sambata: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    Închis
+                                </div>
+                                <div class="col-xs-5 text-right">
+                                    Duminica: 
+                                </div>
+                                <div class="col-xs-7 text-left strong" style="text-align: center">
+                                    Închis
+                                </div>
                             </div>
                         </div>
                     </div>
