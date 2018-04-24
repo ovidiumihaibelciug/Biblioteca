@@ -2,7 +2,7 @@
 /*
 *
 *	Algoritm de transformare a fiecarui rand din excel in sql (CU TOT CU DIACRITICE < 3)
-*
+*   useless, (can't change free hosting server configuration :( )
 */
 
 require 'includes/conn.php';

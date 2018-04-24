@@ -3,7 +3,7 @@
 html, body {
     /*background-image: url(https://themprojects.com/wp-content/uploads/2017/08/ideas-huge-bookshelf-inside-huge-bookshelf.jpg);*/
     background-color: whitesmoke !important;
-    height: 100% !important;
+    height: 100vh !important;
     margin: 0;
 }
 
@@ -15,11 +15,11 @@ html, body {
 }
 
 .footer {
-    margin-bottom: 0px !important;
-    margin-top:50px;
-    font-weight: 700;
-    padding-bottom: 60px;
-    font-family: 'Roboto', sans-serif;
+  margin-bottom: 0px !important;
+  margin-top:50px;
+  font-weight: 700;
+  padding-bottom: 60px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .none {
@@ -100,7 +100,7 @@ html, body {
 }
 
 .centered {
-  display:: inline-block;
+  display: inline-block;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -254,4 +254,93 @@ html, body {
     margin-top: 20px;
   }
 }
+
+
+
+.headerBar {
+  width: 100%;
+}
+
+.box {
+  background-color: white;
+  border: 2px solid rgba(0, 0, 0, .07);
+  border-radius: 10px;
+  padding: 10px;
+  height: 200px;
+  /* width: 30%; */
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.2rem;
+  transform: scale(1);
+  transition: 0.2s ease-in-out;
+}
+
+.box:hover {
+  transform: scale(1.1);
+  transition: 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, .01);
+  cursor: pointer;
+}
+
+.flex-container {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.image::after {
+  display: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 200px;
+  padding: 10px 20px 10px 45px;
+  border: dashed 1px #888;
+  background-color: #f0f0f0;
+  background-image: url(noimage.png);
+  background-size: 10%;
+  background-position: 15px 10px;
+  background-repeat: no-repeat;
+  z-index: 1;
+  content: "" attr(alt) "Not Found";
+}
+
+.page-content {
+  min-height: 100%;
+  /* same measurement as footer */
+  /* margin-bottom: -120px; */
+}
+
+.page-content::after {
+  content: "";
+  display: block;
+}
+
+footer, .page-content::after{
+  height: 120px;
+}
+
+.main-section {
+  margin-top: 10%;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;  
+}
+
+
 

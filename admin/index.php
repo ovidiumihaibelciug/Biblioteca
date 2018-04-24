@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 <body>
     <div class="main">
         <div>
-            <div class="col-md-4 col-md-offset-4 login-box well"">
+            <div class="col-md-4 col-md-offset-4 login-box well">
                 <div class="title">Log in</div>
                 <form action="index.php" method="POST">
                     <div class="form-group">

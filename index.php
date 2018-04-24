@@ -1,6 +1,14 @@
 <?php
 require 'includes/conn.php';
+require 'includes/conn.php';
+require 'Classes/PHPExcel.php';
 $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' => '08:00 - 16:00', 'Joi' => '08:00 - 16:00', 'Vineri' => '08:00 - 16:00', 'Sambata' => 'Închis', 'Duminica' => 'Închis'];
+$tmpfname = 'books.xls';
+$excelReader = PHPExcel_IOFactory::createReaderForFile($tmpfname);
+$excelObj = $excelReader->load($tmpfname);
+
+$worksheet = $excelObj->getActiveSheet();
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,28 +33,31 @@ $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' 
                     <table id="example" class="display" width="100%">
                     <thead>
                     <tr>
-                        <th>Domeniu</th>
-                        <th>Titlu</th>
-                        <th>Autor</th>             
+                        <th>Domeniu (C.Z.U)</th>
+                        <th>Autor</th>
+                        <th>Titlu</th>             
                     </tr>
                     </thead>
                     <tbody>
-                     <?php
-                            $query = "SELECT * FROM `books`";
-                            $result = mysqli_query($conn, $query);
-                            while ($row = mysqli_fetch_assoc($result)):
-                                $idBookDb = $row['id'];
-                                $fieldBookDb = $row['field'];
-                                $titleBookDb = $row['name'];
-                                $authorBookDb = $row['author'];
-                                ?>
+                    <?php
+                    $lastRow = $worksheet->getHighestRow();
+                    $row = 2; // primul index e 1 si e titlul 
+                    while ($row <= $lastRow):
+                        set_time_limit(999);
+                        // $idBook = $worksheet->getCell('F'.$row)->getValue();
+                        $fieldBook = $worksheet->getCell('A'.$row)->getValue();
+                        $titleBook = $worksheet->getCell('C'.$row)->getValue();
+                        $authorBook = $worksheet->getCell('D'.$row)->getValue();
+                        ?>
                                 <tr>
-                                    <td><?= $fieldBookDb ?></td>
-                                    <td><?= $titleBookDb ?></td>
-                                    <td><?= $authorBookDb ?></td>
+                                    <td><?= $fieldBook ?></td>
+                                    <td><?= $authorBook ?></td>  
+                                    <td><?= $titleBook ?></td>
                                 </tr>
-                            <?php endwhile; ?>
-
+                                
+                    <?php 
+                        $row++;
+                    endwhile; ?>
                     </tbody>
                 </table>
                 </div>
@@ -75,7 +86,7 @@ $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' 
             </div>
         </div>
      </div>
-    <div class="footer jumbotron">
+    <footer class="footer jumbotron">
         <div class="container">
             <div class="pull-right year">
 
@@ -84,7 +95,7 @@ $schedule = ['Luni' => ' 08:00 - 16:00', 'Marti' => '08:00 - 16:00', 'Miercuri' 
                 <a href="admin">Toate drepturile rezervate CNGI</a>
             </div>
         </div>
-    </div>
+    </footer>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.js"></script>
