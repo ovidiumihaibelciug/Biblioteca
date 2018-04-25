@@ -3,6 +3,7 @@ require '../includes/conn.php';
 session_start();
 $success = 0;
 $_SESSION['xls'] = false;
+$_SESSION['news'] = "";
     if (!isset($_SESSION['logged']) || $_SESSION['logged'] == 0) {
         header('Location: index.php');
     }
@@ -18,6 +19,24 @@ $_SESSION['xls'] = false;
 
         move_uploaded_file($_FILES["filepath"]["tmp_name"], $target_file);
         $_SESSION['xls'] = true;
+    }
+
+    if (isset($_POST['submitNews'])) {
+        $target_dir = "../upload/news/";
+        $target_dir = $target_dir . basename( $_FILES['file']['name']);
+
+        $file_type = $_FILES['file']['type'];
+
+        if ($file_type=="application/pdf" || $file_type=="image/gif" || $file_type=="image/jpeg" || $file_type=="image/jpg" || $file_type=="image/png") {
+
+            if(move_uploaded_file($_FILES['file']['tmp_name'], $target_dir)) {
+                $_SESSION['news'] = "Ati adaugat o noutate cu succes";
+            } else {
+                $_SESSION['news'] = "A aparut o problema. Incercati mai tarziu.";             
+            }
+        } else {
+            $_SESSION['news'] = "Format invalid. Puteti adauga doar pdf,gif,jpeg,jpg sau png.";                         
+        }
     }
    
 
@@ -59,15 +78,15 @@ $_SESSION['xls'] = false;
                         Ati schimbat baza de date cu succes!
                     </div>
                 <?php endif; ?>
-                <div class="row flex-row">
+                <div class="row">
                     <div class="col-md-3 box change-db">
                         Adauga un eveniment
                     </div>
-                    <div class="col-md-3 box change-db"  data-toggle="modal" data-target="#changeDb">
+                    <div class="col-md-3 box change-db" data-toggle="modal" data-target="#changeDb">
                         Schimba baza de date
                     </div>
-                    <div class="col-md-3 box change-db">
-                        Lorem ipsum
+                    <div class="col-md-3 box change-db" data-toggle="modal" data-target="#news">
+                        Adauga o noutate
                     </div>
                 </div>
             </div>
@@ -83,12 +102,51 @@ $_SESSION['xls'] = false;
                     <div class="modal-body">
                         <div>
                             <form action="main.php" method="POST" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <input type="file" class="form-control" name="filepath" id="filepath"/>
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" class="btn btn-success form-control" name="submitDb"/>
-                            </div>
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="filepath" id="filepath"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success form-control" name="submitDb"/>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="events" tabindex="-1" role="dialog" aria-labelledby="events">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Adauga un eveniment</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="news" tabindex="-1" role="dialog" aria-labelledby="news">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Adauga o noutate</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form action="main.php" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <input type="file" class="form-control" name="file" id="file" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-success form-control" name="submitNews" />
+                                </div>
                             </form>
                         </div>
                     </div>
