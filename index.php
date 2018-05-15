@@ -29,6 +29,7 @@
             <div class="main" style="margin-top: 100px">
                 <div class="row">
                 <div class="col-md-9">
+                    <?php require_once './includes/secondaryNav.php'; ?>
                     <table id="example" class="display" width="100%">
                     <thead>
                     <tr>
@@ -46,7 +47,7 @@
                         // $idBook = $worksheet->getCell('F'.$row)->getValue();
                         $fieldBook = $worksheet->getCell('A'.$row)->getValue();
                         $titleBook = $worksheet->getCell('C'.$row)->getValue();
-                        $authorBook = $worksheet->getCell('D'.$row)->getValue();
+                        $authorBook = $worksheet->getCell('B'.$row)->getValue();
                         ?>
                                 <tr>
                                     <td><?= $fieldBook ?></td>
@@ -61,6 +62,25 @@
                 </table>
                 </div>
                 <div class="col-md-3">
+                    <div class="panel panel-default news">
+                        <div class="panel-heading" style="background-color: white; text-align: center; font-family: Verdana; text-transform: uppercase;">
+                            <h4 class="title">
+                                Noutati
+                            </h4>
+                        </div>
+                        <div class="panel-body news-body" style="text-align: center; align-items: center;">
+                        <?php 
+                            $query = "SELECT * FROM `news` ORDER BY `id` DESC";
+                            $result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_assoc($result)): ?>
+                                <div class="row" style="text-align: center">
+                                    <div class="col-md-12">
+                                        <a class="news-title" href="<?=$row['file']?>" target="_blank" ><?=$row['name']?></a>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
+                    </div>
                     <div class="panel panel-default schedule">
                         <div class="panel-heading" style="background-color: white; text-align: center; font-family: Verdana; text-transform: uppercase;">
                             <h4 class="title">
@@ -69,56 +89,14 @@
                         </div>
                         <div class="panel-body" style="text-align: center; align-items: center;">
                             <div class="row" style="text-align: center">
-                                <!-- <?php foreach ($schedule as $day => $day_schedule) {?>
+                                <?php foreach ($schedule as $day => $day_schedule) {?>
                                 <div class="col-xs-5 text-right">
                                     <?php echo $day . ':'; ?>
                                 </div>
                                 <div class="col-xs-7 text-left strong" style="text-align: center">
                                     <?php echo $day_schedule ?>
                                 </div>
-                                <?php } ?> -->
-                                <div class="col-xs-5 text-right">
-                                    Luni: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    08:00 - 16:00
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Marti: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    08:00 - 16:00
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Miercuri: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    08:00 - 16:00
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Joi: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    08:00 - 16:00
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Vineri: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    08:00 - 16:00
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Sambata: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    Închis
-                                </div>
-                                <div class="col-xs-5 text-right">
-                                    Duminica: 
-                                </div>
-                                <div class="col-xs-7 text-left strong" style="text-align: center">
-                                    Închis
-                                </div>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>

@@ -23,7 +23,7 @@ $_SESSION['news'] = "";
 
     if (isset($_POST['submitNews'])) {
         $target_dir = "../upload/news/";
-        $target_dir = $target_dir . basename( $_FILES['file']['name']);
+        $target_dir = $target_dir . time() . basename( $_FILES['file']['name']);
 
         $file_type = $_FILES['file']['type'];
 
@@ -31,6 +31,11 @@ $_SESSION['news'] = "";
 
             if(move_uploaded_file($_FILES['file']['tmp_name'], $target_dir)) {
                 $_SESSION['news'] = "Ati adaugat o noutate cu succes";
+                $title = mysqli_real_escape_string($conn, htmlentities($_POST['title']));
+                $file = $_FILES['file']['tmp_name'];
+                $dbFile = substr($target_dir, 1);
+                $query = "INSERT INTO `news` VALUES('', '$title', '$dbFile')";
+                mysqli_query($conn, $query);
             } else {
                 $_SESSION['news'] = "A aparut o problema. Incercati mai tarziu.";             
             }
@@ -69,8 +74,10 @@ $_SESSION['news'] = "";
                 </div>
             </div>
 
-            
-            
+
+            <a href="/" class="back-button btn btn-default">
+                <i class="glyphicon glyphicon-chevron-left"></i>
+            </a>
             <div class="container main-section">
                 <?php if ($_SESSION['xls'] == true): ?>
                     <div class="alert alert-success alert-dismissible" role="alert">
@@ -141,6 +148,10 @@ $_SESSION['news'] = "";
                     <div class="modal-body">
                         <div>
                             <form action="main.php" method="POST" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="title">Titlu:</label>
+                                    <input type="text" class="form-control" name="title" id="title" />
+                                </div>
                                 <div class="form-group">
                                     <input type="file" class="form-control" name="file" id="file" />
                                 </div>
