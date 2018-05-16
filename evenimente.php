@@ -22,54 +22,64 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
-    <?php require './includes/navbar.php'; ?>
-    <?php require './includes/carousel.php'; ?>
-    <div class="container" id="main" style="background-color: whitesmoke; padding: 0;">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="sec-events">
-                        <?php require_once './includes/secondaryNav.php'; ?>
-                    </div>
-                    <div class="container-card">
-                        <div class='large'>
-                            <div class='card-image'>
-                                <img src='https://images.pexels.com/photos/595747/pexels-photo-595747.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260'>
+    <div id="loader"></div>
+    <div id="layout" class="not-active">
+        <?php require './includes/navbar.php'; ?>
+        <?php require './includes/carousel.php'; ?>
+        <div class="container" id="main" style="background-color: whitesmoke; padding: 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <div class="sec-events">
+                            <?php require_once './includes/secondaryNav.php'; ?>
+                        </div>
+                        <?php
+                            $query = "SELECT * FROM `events`";
+                            $result = mysqli_query($conn, $query);
+                            while ($row = mysqli_fetch_assoc($result)):
+                        ?>
+                            <div class="container-card">
+                                <div class='large'>
+                                    <div class='card-image'>
+                                        <img src="<?= $row['image'] ?>">
+                                    </div>
+                                        <div class='card-text'>
+                                            <p><?= $row['title'] ?></p>
+                                            <p><?= $row['description'] ?></p>
+                                            <p>
+                                                <?php if ($row['file']):?>
+                                                    <a href="<?= $row['file']; ?>" target="_blank">PDF</a>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
+                                </div>              
                             </div>
-                                <div class='card-text'>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                    <p>Integer nec odio. Praesent libero.</p>
-                                </div>
-                        </div>              
+                        <?php endwhile; ?>
                     </div>
-                    <div class="container-card">
-                        <div class='large'>
-                            <div class='card-image'>
-                                <img src='https://images.pexels.com/photos/595747/pexels-photo-595747.jpeg?auto=compress&amp;cs=tinysrgb&amp;h=750&amp;w=1260'>
-                                </div>
-                                <div class='card-text'>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                <p>Integer nec odio. Praesent libero.</p>
-                                </div>
-                            </div>              
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+         </div>
+         <footer class="footer jumbotron">
+            <div class="container">
+                <div class="pull-left year"></div>
+                <br />
+                <div class="pull-left">
+                    <a href="admin">Toate drepturile rezervate CNGI</a>
+                </div>
+                <div class="pull-right">
+                    <div class="row">
+                        <div class="col-md-12 made-by">
+                            <span>Proiect realizat de: &nbsp</span>
+                            <a href="https://www.facebook.com/ovidiumihai.belciug" target="_blank">Ovidiu-Mihai Belciug</a>, &nbsp;<a href="https://www.facebook.com/alexcambose" target="_blank">Alexandru Cambose</a>
                         </div>
                     </div>
+                   
                 </div>
-                <div class="col-md-2"></div>
             </div>
-        </div>
-     </div>
-    <footer class="footer jumbotron">
-        <div class="container">
-            <div class="pull-right year">
-
-            </div>
-            <div class="pull-left">
-                <a href="admin">Toate drepturile rezervate CNGI</a>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.8.3/jquery.csv.js"></script>

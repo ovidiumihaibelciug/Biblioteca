@@ -1,3 +1,10 @@
+$(window).on('load', function () {
+    setTimeout(function() {
+      $('#loader').hide();
+      $('#layout').removeClass('not-active');
+    }, 100)
+  });
+
 // TODO: Refactor
 $(document).ready(function() {
     $('#example').DataTable( {
